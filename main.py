@@ -3,10 +3,8 @@ from sqlalchemy.orm import Session
 
 import crud
 import schemas
-from db import models
-from db.database import SessionLocal, engine
+from db.database import SessionLocal
 
-models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
@@ -52,8 +50,7 @@ def get_books(
         limit: int = 10,
         db: Session = Depends(get_db)
 ):
-    books = crud.get_books(db, skip=skip, limit=limit)
-    return books
+    return crud.get_books(db, skip=skip, limit=limit)
 
 
 @app.post("/books/", response_model=schemas.Book)

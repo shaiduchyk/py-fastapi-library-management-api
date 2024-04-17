@@ -31,7 +31,6 @@ class BookCreate(BookBase):
 
 class Book(BookBase):
     id: int
-    # author: Author
 
     class Config:
         from_attributes = True
